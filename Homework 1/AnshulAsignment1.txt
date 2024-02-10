@@ -1,0 +1,24 @@
+Question 1:
+    Performing binary search on an array is O(log n) because we do not need to search the entire array and accessing an element in an array in Constant Time [O(1)]
+    But when dealing with a Linked List Accessing an Element becomes O(n) because we have to traverse through the pointers.
+    Therefore: performing Binary Search on an Array = O(log n)
+               performing Binary Search on a Linked List = O(n log n) [n number of times to acces an element at every n/2th iteration]
+    for example:
+        linked_list = 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
+        binary_search(9, linked_list):
+            1) we know that 5 lies in between 1(root) and 10(right most) [traversed 5 by starting at 1 -> 2 -> 3 -> 4 -> 5]
+                                                                         [travered 10 by starting at 1 -> ... -> 10]
+            2) we know that 8 lies in between 5(root) and 10(right most) [traversed 8 by starting at 5 -> 6 -> 7 -> 8]
+            3) we can locate 9 by traversing 8->9
+
+    in this presentation of an algorithm we can keep creating a new linked list with half the elements each time because insertion of a linked list is O(1)
+
+
+Question 2:
+    The time complexity refers to the amount of time taken by an algorithm to execute and the Space Complexity refers to the amount
+        of memory requried for the algorithm to run. In both cases, it would be ideall to minize both.
+    But in some cases, we might chose an algorithm that runs faster eventhough it takes it more space because realistcally we cannot wait forever to get an expected output.
+    In some other cases, we might have to settle for an algorithm that runs relatively slow but also takes up enough space, because it is equally problematic as the first case.
+    if we do have a fast algorithm but do not have the memory to run it.
+
+
