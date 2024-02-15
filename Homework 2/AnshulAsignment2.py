@@ -245,3 +245,20 @@ def equal_ht(A: list, B: list) -> bool:
             return False # When an element that does not exist in the hashtable is encountered, it returns false
 
     return True
+
+# Test cases #
+
+# Question 1
+print(frequency_count([]))
+print(frequency_count([1]))
+print(frequency_count([1,1,1,1,1,1,2,1,1,1,1,1,1,1,1]))
+print(frequency_count([1,2,3,4,5,6]))
+print(frequency_count([10,9,8,7,6,5,4,3,2,1]))
+
+# Question 5
+l1 = [1,2,3,4,5,6,7]
+l2 = [7,6,5,4,3,2]
+
+print(intersect_bst(l1, l2))
+print(difference_bst(l1,l2))
+print(equals_bst(l1, l2))
