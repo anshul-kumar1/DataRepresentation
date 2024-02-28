@@ -1,10 +1,10 @@
 # Question 1
-def put(val :int, hm: list) -> list:
+def put(val:int, hm: list) -> list:
     index = val % 7
     hm[index].append(val)
     return hm
 
-# counts the number of occurences by utilizing a hashmap
+# counts the number of occurrences by utilizing a hashmap
 def frequency_count(l: list) -> list:
     hm = [[] for elem in range(7)]
     for i in l:

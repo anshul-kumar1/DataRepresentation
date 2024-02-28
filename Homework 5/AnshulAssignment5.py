@@ -1,4 +1,32 @@
 import math
+import json
+import numpy as np
+from numpy.linalg import norm
+
+# Question
+
+# Helper function for preprocessing the data
+def clean_line(inp: str) -> str:
+    final = ""
+    for char in inp:
+        if 97 <= ord(char) <= 122:
+            final = final + char
+        elif ord(char) == 32:
+            final = final + char
+        elif 65 <= ord(char) <= 90:
+            final = final + char.lower()
+    return final
+
+with open('JEOPARDY_QUESTIONS.json', 'r') as file:
+    d = json.load(file)
+
+first_10000 = d[:10000]
+question_data = []
+for elem in first_10000:
+    question_data.append(clean_line(elem['question']))
+
+print(question_data)
+
 
 corpus = [
     "Renewable energy advancements are reducing our reliance on fossil fuels. Solar, wind, and hydroelectric power offer cleaner alternatives that help combat climate change.",
@@ -13,17 +41,7 @@ corpus = [
     "Wildlife conservation efforts are crucial for protecting endangered species. Habitat restoration and anti-poaching laws help preserve biodiversity for future generations.",
 ]
 
-# Helper function for preprocessing the data
-def clean_line(inp: str) -> str:
-    final = ""
-    for char in inp:
-        if 97 <= ord(char) <= 122:
-            final = final + char
-        elif ord(char) == 32:
-            final = final + char
-        elif 65 <= ord(char) <= 90:
-            final = final + char.lower()
-    return final
+
 
 # Preprocessing the data
 def preprocess(data: list) -> list:
