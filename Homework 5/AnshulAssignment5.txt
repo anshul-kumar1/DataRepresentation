@@ -27,6 +27,7 @@
     ≡ w → ¬(¬w ∧ ¬w)
     ≡ w → (w ∨ w)
     ≡ ¬w ∨ (w ∨ w)
-    ≡ ¬w ∨ (w ∨ w)
+    ≡ ¬w ∨ w
+    Therefore it is a tautology
 
-
+6. 
