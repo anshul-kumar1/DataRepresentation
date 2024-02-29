@@ -25,6 +25,64 @@ question_data = []
 for elem in first_10000:
     question_data.append(clean_line(elem['question']))
 
+stop_words = ["the", "and", "of", "in", "a", "to", "is", "it", "you", "for", "on", "with", "this", "that", "are", "as", "be"]
+dict_of_words = {}
+
+i = 1
+for line in question_data:
+    temp = line.split()
+    for word in temp:
+        if word not in dict_of_words and word not in stop_words:
+            dict_of_words[word] = i
+            i = i + 1
+
+i = 1
+one_hot_encoded = []
+
+for question in question_data:
+    temp = question.split()
+    for i in range(0, len(temp)):
+        if temp[i] not in dict_of_words.keys():
+            temp[i] = 0
+        else:
+            temp[i] = 1
+    one_hot_encoded.append(temp)
+
+
+# cosine_sim = []
+# for i in range(0, len(one_hot_encoded)):
+#     cosine = np.dot(i+1, i) / (norm(i+1, axis=1) * norm(i))
+#     cosine_sim.append(cosine)
+#
+# print(cosine_sim)
+
+import math
+import json
+import numpy as np
+from numpy.linalg import norm
+
+# Question
+
+# Helper function for preprocessing the data
+def clean_line(inp: str) -> str:
+    final = ""
+    for char in inp:
+        if 97 <= ord(char) <= 122:
+            final = final + char
+        elif ord(char) == 32:
+            final = final + char
+        elif 65 <= ord(char) <= 90:
+            final = final + char.lower()
+    return final
+
+with open('JEOPARDY_QUESTIONS.json', 'r') as file:
+    d = json.load(file)
+
+first_10000 = d[:10000]
+question_data = []
+for elem in first_10000:
+    question_data.append(clean_line(elem['question']))
+
 print(question_data)
 
 

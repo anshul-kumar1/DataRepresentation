@@ -2,7 +2,7 @@
     a) If you pass the course, then you did not miss the final exam.
     b) you will fail the course if and only if you miss the final exam.
     c) You do not have a cold or you missed the final exam.
-    d) If, you missed the exam or passed the course, then you didnt have a have a cold if and only if you passed the course.
+    d) If, you missed the exam and passed the course, then you didnt have a have a cold if and only if you passed the course.
 
 2.
     a) The given proposition is a tautology so the semantics are: True for all values.
@@ -19,7 +19,8 @@
     b) The above proposition is logically equivalent to "F or (p or q) and (not p)
 
 4.
-    a)
+	a)
+	b)
 
 5. ↔ ¬ ∨ ∧ ≡
     w → ¬((r → u) ∧ (u → ¬ w) ∧ (w → r))
@@ -31,3 +32,11 @@
     Therefore it is a tautology
 
 6. 
+	a) p = F, q = T
+	b) p = T, q = T
+	c) p = T, q = T, r = F
+
+7. 	
+	a) (r → (p ∨ q) ∧ (p → (q → r))
+	b) 
+8. 	R = (p → r) ∧ (r → p)
