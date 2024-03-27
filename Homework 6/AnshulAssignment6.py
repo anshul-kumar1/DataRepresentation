@@ -65,17 +65,19 @@ f_recons = ifftshift(shifted)
 rec = np.real(ifft2(f_recons))
 error = np.mean(np.abs(astronaut_img - rec))
 
-print(f"Mean Absolute Error: {error}")
-print(f"Amplitude: {amplitude}")
-print(f"Phase Angle: {phase_an}")
+print(f"Mean Absolute Error:", error)
+print(f"Amplitude:", amplitude)
+print(f"Phase Angle:", phase_an)
 
 # getting the co-ordinates of the center of the shifted image
 a, b = shifted.shape
-center = (a//2, b//2)
+center_coordinates = (a//2, b//2)
 
 # calculating the distance of each pixel from the center
 dist_X, dist_Y = np.ogrid[:a, :b]
-dist = np.sqrt((dist_X - center[1]) ** 2 + (dist_Y - center[0]) ** 2)
+
+# implementing the distance formula (pythagorean theorem)
+dist = np.sqrt((dist_X - center_coordinates[1]) ** 2 + (dist_Y - center_coordinates[0]) ** 2)
 threshold = min(a, b) / 6
 
 # removing high frequencies
