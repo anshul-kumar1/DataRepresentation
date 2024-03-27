@@ -9,19 +9,19 @@ import scipy.fftpack
 # Question 1
 def dot_product(v1, v2):
     product = np.dot(v1, v2)
-    magnitude = np.abs(dot_product)
+    magnitude = np.abs(product)
     real = np.real(product)
     imaginary = np.imag(product)
     phase_angle = np.angle(product)
 
-    return dot_product, magnitude, real, imaginary, phase_angle
+    return product, magnitude, real, imaginary, phase_angle
 
+print(dot_product(1 - 4j, 1 + 1j))
 
 # Question 2 #
 # Implement the Discrete Time Fourier Transform (DTFT) algorithm which returns the coefficients of the DTFT of a signal.
 def dtft_algorithm(signal, time):
     L = len(time)  # Length of the signal
-    signal = 6 * np.sin(2 * np.pi * 3 * time) + 3 * np.sin(2 * np.pi * 6 * time)
     ft = np.arange(L) / L
     coeff = np.zeros((len(signal)), dtype=complex)
 
@@ -33,21 +33,27 @@ def dtft_algorithm(signal, time):
 
 srt = 1000
 t = np.arange(0, 2.0, 1.0 / srt)
-sgnl = 6 * np.sin(2 * np.pi * 3 * t) + 3 * np.sin(2 * np.pi * 6 * t)
-coefficients = dtft_algorithm(sgnl, t)
-sgnl = np.sin(2 * np.pi * 3 * t) + np.cos(2 * np.pi * 6 * t)
+sgnl1 = 6 * np.sin(2 * np.pi * 3 * t) + 3 * np.sin(2 * np.pi * 6 * t)
+coefficients1 = dtft_algorithm(sgnl1, t)
+freq1 = np.arange(len(sgnl1)) * srt / len(sgnl1)
 
-freq = np.arange(len(sgnl)) * srt / len(sgnl)
+sgnl2 = np.sin(2 * np.pi * 3 * t) + np.cos(2 * np.pi * 6 * t)
+coefficients2 = dtft_algorithm(sgnl2, t)
+freq2 = np.arange(len(sgnl2)) * srt / len(sgnl2)
 
 plt.figure(figsize=(10, 4))
-plt.plot(freq, np.abs(coefficients))
-
+plt.plot(freq1, np.abs(coefficients1))
 plt.xlabel('Frequency')
 plt.ylabel('Magnitude')
 plt.xlim(0, 10)
-
 plt.show()
 
+plt.figure(figsize=(10, 4))
+plt.plot(freq2, np.abs(coefficients2))
+plt.xlabel('Frequency')
+plt.ylabel('Magnitude')
+plt.xlim(0, 10)
+plt.show()
 
 # Question 3 #
 # Reconstruction of the image using the Fourier Transform and removing high frequencies
@@ -78,8 +84,8 @@ dist_X, dist_Y = np.ogrid[:a, :b]
 
 # implementing the distance formula (pythagorean theorem)
 dist = np.sqrt((dist_X - center_coordinates[1]) ** 2 + (dist_Y - center_coordinates[0]) ** 2)
-threshold = min(a, b) / 6
-
+threshold = min(a, b) / 4
+print("Threshold:", threshold)
 # removing high frequencies
 removed_high_freq = np.where(dist > threshold, 0, shifted)
 
