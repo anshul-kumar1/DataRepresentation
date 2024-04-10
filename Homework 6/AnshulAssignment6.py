@@ -17,6 +17,10 @@ def dot_product(v1, v2):
     return product, magnitude, real, imaginary, phase_angle
 
 print(dot_product(1 - 4j, 1 + 1j))
+print(dot_product(5 - 4j, 3 + 0j))
+print(dot_product(5 + 3j, 5 + 3j))
+print(dot_product(5 + 3j, 5 - 3j))
+
 
 # Question 2 #
 # Implement the Discrete Time Fourier Transform (DTFT) algorithm which returns the coefficients of the DTFT of a signal.
