@@ -159,7 +159,7 @@ def equals_bst(A: list, B: list) -> bool:
     return True
 
 class HashTable:
-    def __init__(self,buckets):
+    def __init__(self, buckets):
         # length of the hashtable
         self.buckets = buckets
         # initializing as a 2d array for chaining
@@ -169,14 +169,14 @@ class HashTable:
     def hash_function(self, k: int) -> int:
         return k % self.buckets
 
-# inserts a number into a hastable while preserving the hashtable
+# inserts a number into a hashtable while preserving the hashtable
 def insert(element: int, A: HashTable) -> HashTable:
     index = A.hash_function(element)
     A.table[index].append(element)
     return A
 
 # checks if an element is in the hashtable by locating in a specific bucket
-def isIn(element: int, A: HashTable) -> HashTable:
+def isIn(element: int, A: HashTable) -> bool:
     index = A.hash_function(element)
     if element in A.table[index]:
         return True
@@ -194,7 +194,7 @@ def delete(element: int, A: HashTable) -> HashTable:
 
 # uses the insert function and builds a hashmap from a list
 def build_ht(l: list, buckets: int) -> HashTable:
-    ht = HashTable(4)
+    ht = HashTable(buckets)
     for elem in l:
         insert(elem, ht)
     return ht
@@ -202,18 +202,18 @@ def build_ht(l: list, buckets: int) -> HashTable:
 # Question 5
 # finds the intersection between 2 lists by taking advantage of hashtables
 def intersection_ht(A: list, B: list) -> list:
-    if len(A) == 0 or len(B) == 0: # cases for empty lists also handled
+    if len(A) == 0 or len(B) == 0:  # cases for empty lists also handled
         return []
-    ht_A = build_ht(A, 4) # 4 buckets constant as stated in the homrwork
+    ht_A = build_ht(A, 4)  # 4 buckets constant as stated in the homrwork
     ht_B = build_ht(B, 4)
     final = []
     for elem in A:
-        if isIn(elem, ht_B): # checks if the element is in hashtable B (O(1))
+        if isIn(elem, ht_B):  # checks if the element is in hashtable B (O(1))
             final.append(elem)
     return final
 
 def difference_ht(A: list, B: list) -> list:
-    if len(A) == 0 and len(B) == 0: # cases for empty lists also handled
+    if len(A) == 0 and len(B) == 0:  # cases for empty lists also handled
         return []
     if len(A) == 0:
         return B
@@ -254,11 +254,61 @@ print(frequency_count([1]))
 print(frequency_count([1,1,1,1,1,1,2,1,1,1,1,1,1,1,1]))
 print(frequency_count([1,2,3,4,5,6]))
 print(frequency_count([10,9,8,7,6,5,4,3,2,1]))
+print("------------")
 
-# Question 5
-l1 = [1,2,3,4,5,6,7]
-l2 = [7,6,5,4,3,2]
+# Question 2
+bt = build_tree([5, 7, 3, 4, 2, 6, 10])
+print(descendant(bt, 5))
+print(descendant(bt, 3))
+print(descendant(bt, 4))
+
+print(ancestor(bt, 2))
+print(ancestor(bt, 6))
+print(ancestor(bt, 5))
+print("----------------")
+
+# Question 3
+l1 = [1, 2, 3, 4, 5, 6, 7]
+l2 = [7, 6, 5, 4, 3, 2]
 
 print(intersect_bst(l1, l2))
-print(difference_bst(l1,l2))
+print(difference_bst(l1, l2))
 print(equals_bst(l1, l2))
+print(equals_bst([1, 5, 2, 7, 9], [2, 5, 9, 1, 7]))
+print("-----------------")
+
+# Question 4
+ht = build_ht([], 5)
+ht = insert(1, ht)
+ht = insert(2, ht)
+ht = insert(3, ht)
+ht = insert(5, ht)
+ht = insert(6, ht)
+ht = insert(7, ht)
+ht = insert(8, ht)
+ht = insert(9, ht)
+ht = insert(10, ht)
+print(ht.table)
+ht = delete(5, ht)
+ht = delete(10, ht)
+ht = delete(2, ht)
+ht = delete(7, ht)
+ht = delete(9, ht)
+print(ht.table)
+ht = delete(10, ht)
+print("-----------------")
+
+# Question 5
+print(intersection_ht([], []))
+print(difference_ht([], []))
+print(equal_ht([], []))
+print(intersection_ht([1, 2, 3,], []))
+print(difference_ht([1, 2, 3,], []))
+print(equal_ht([1, 2, 3,], []))
+print(intersection_ht([], [1, 2, 3]))
+print(difference_ht([], [1, 2, 3]))
+print(equal_ht([], [1, 2, 3]))
+print(intersection_ht([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]))
+print(difference_ht([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]))
+print(equal_ht([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]))
+
